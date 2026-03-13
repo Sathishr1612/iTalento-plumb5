@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentFlow ATS - Departments</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <span class="logo-text">iTalento</span>
+            </a>
+        </div>
+
+        <nav class="nav-section">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="departments.html" class="nav-link active">
+                    <i class="bi bi-building"></i>
+                    <span>Departments</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="candidates.html" class="nav-link">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Candidates</span>
+                    <span class="nav-badge">156</span>
+                </a>
+            </div>
+         
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-header">
+                <span>Quick Filters</span>
+                <button class="filter-toggle" id="filterToggle">
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="filter-content show" id="filterContent">
+                <div class="filter-group">
+                    <label class="filter-label">Department</label>
+                    <select class="filter-select">
+                        <option>All Departments</option>
+                        <option>Engineering</option>
+                        <option>Design</option>
+                        <option>Marketing</option>
+                        <option>Sales</option>
+                        <option>HR</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Job Status</label>
+                    <div class="filter-chips">
+                        <button class="filter-chip active">Active</button>
+                        <button class="filter-chip">Paused</button>
+                        <button class="filter-chip">Closed</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Location</label>
+                    <select class="filter-select">
+                        <option>All Locations</option>
+                        <option>Remote</option>
+                        <option>New York</option>
+                        <option>San Francisco</option>
+                        <option>London</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Recruiter</label>
+                    <select class="filter-select">
+                        <option>All Recruiters</option>
+                        <option>Sarah Johnson</option>
+                        <option>Mike Chen</option>
+                        <option>Emily Davis</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Date Range</label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked>
+                        <span>Last 7 days</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox">
+                        <span>Last 30 days</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox">
+                        <span>This quarter</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search candidates, jobs, or departments...">
+                </div>
+
+                <button class="search-icon-mobile" id="searchMobileToggle">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <div class="navbar-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <!-- <button class="btn-post-job" id="postJobBtn">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Post Job</span>
+                </button> -->
+
+                <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+                    <button class="profile-dropdown" id="profileDropdown" type="button">
+                        <div class="profile-avatar">Sr</div>
+                        <div class="profile-info">
+                            <span class="profile-name">Sr</span>
+                            <span class="profile-role">HR Manager</span>
+                        </div>
+                        <i class="bi bi-chevron-down profile-caret"></i>
+                    </button>
+
+                    <div class="profile-menu" id="profileMenu">
+                        <div class="profile-menu-header">
+                            <div class="profile-menu-email">hr@italento.com</div>
+                        </div>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-people-fill"></i>
+                            <span>Manage Admin</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-person-fill"></i>
+                            <span>Manage User</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>Mail History</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-calendar-event"></i>
+                            <span>Scheduled Meetings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Settings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            <span>Unassign Candidates</span>
+                        </button>
+
+                        <button class="profile-menu-item logout" type="button">
+                            <i class="bi bi-power"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-content">
+            <div class="welcome-header departments-header">
+                <div>
+                    <h1 class="welcome-title">Departments Overview</h1>
+                    <p class="welcome-subtitle">Welcome back! Here's what's happening with your hiring today.</p>
+                </div>
+
+                <button class="btn-add-department" id="addDepartmentBtn" type="button">
+                    <span class="btn-add-icon">
+                        <i class="bi bi-plus-lg"></i>
+                    </span>
+                    <span>Add Department</span>
+                </button>
+            </div>
+
+            <div class="departments-section">
+                <div class="dept-grid" id="deptGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Department Modal -->
+    <div class="department-modal-overlay" id="departmentModal">
+        <div class="department-modal-v2">
+            <div class="department-modal-v2-header">
+                <h2>Add Department</h2>
+                <button class="department-modal-v2-close" id="closeDepartmentModal" type="button" aria-label="Close">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <form class="department-form-v2" id="departmentForm">
+                <div class="department-form-v2-body">
+                    <div class="department-form-v2-grid">
+                        <div class="department-field">
+                            <label for="departmentName">Department Name</label>
+                            <input type="text" id="departmentName" placeholder="Enter department name">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentCode">Department Code</label>
+                            <input type="text" id="departmentCode" placeholder="Enter department code">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentHead">Department Head</label>
+                            <input type="text" id="departmentHead" placeholder="Enter department head">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentPhone">Phone Number</label>
+                            <input type="text" id="departmentPhone" placeholder="Enter phone number">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentEmail">Email Address</label>
+                            <input type="email" id="departmentEmail" placeholder="Enter email address">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentLocation">Location</label>
+                            <input type="text" id="departmentLocation" placeholder="Enter location">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentDate">Created Date</label>
+                            <input type="date" id="departmentDate">
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentDay">Day</label>
+                            <input type="text" id="departmentDay" placeholder="Auto-filled day" readonly>
+                        </div>
+
+                        <div class="department-field">
+                            <label for="departmentStatus">Status</label>
+                            <select id="departmentStatus">
+                                <option value="">Select status</option>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                                <option>On Hold</option>
+                            </select>
+                        </div>
+
+                        <div class="department-field">
+                            <label for="employeeCount">Employee Count</label>
+                            <input type="number" id="employeeCount" placeholder="Enter employee count">
+                        </div>
+
+                        <div class="department-field department-field-full">
+                            <label for="departmentDescription">Description</label>
+                            <textarea id="departmentDescription" rows="4"
+                                placeholder="Enter department description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="department-form-v2-footer">
+                    <button type="button" class="btn-department-cancel" id="cancelDepartmentModal">Cancel</button>
+                    <button type="submit" class="btn-department-save">
+                        <i class="bi bi-building-add"></i>
+                        <span>Save Department</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</body>
+
+</html>

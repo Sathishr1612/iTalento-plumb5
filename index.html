@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentFlow ATS - Dashboard</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <span class="logo-text">iTalento</span>
+            </a>
+        </div>
+
+        <nav class="nav-section">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link active">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="departments.html" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    <span>Departments</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="candidates.html" class="nav-link">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Candidates</span>
+                    <span class="nav-badge" id="sidebarCandidateCount">156</span>
+                </a>
+            </div>
+
+             <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+
+        </nav>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-header">
+                <span>Quick Filters</span>
+                <button class="filter-toggle" id="filterToggle" type="button">
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="filter-content show" id="filterContent">
+                <div class="filter-group">
+                    <label class="filter-label">Department</label>
+                    <select class="filter-select">
+                        <option>All Departments</option>
+                        <option>Engineering</option>
+                        <option>Design</option>
+                        <option>Marketing</option>
+                        <option>Sales</option>
+                        <option>HR</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Job Status</label>
+                    <div class="filter-chips">
+                        <button class="filter-chip active" type="button">Active</button>
+                        <button class="filter-chip" type="button">Paused</button>
+                        <button class="filter-chip" type="button">Closed</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Location</label>
+                    <select class="filter-select">
+                        <option>All Locations</option>
+                        <option>Remote</option>
+                        <option>New York</option>
+                        <option>San Francisco</option>
+                        <option>London</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Recruiter</label>
+                    <select class="filter-select">
+                        <option>All Recruiters</option>
+                        <option>Sarah Johnson</option>
+                        <option>Mike Chen</option>
+                        <option>Emily Davis</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Date Range</label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked>
+                        <span>Last 7 days</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox">
+                        <span>Last 30 days</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox">
+                        <span>This quarter</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" type="button">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search candidates, jobs, or departments...">
+                </div>
+
+                <button class="search-icon-mobile" id="searchMobileToggle" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <div class="navbar-actions">
+                <button class="notification-btn" id="notificationBtn" type="button">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <!-- <button class="btn-post-job" id="postJobBtn" type="button">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Post Job</span>
+                </button> -->
+
+                <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+                    <button class="profile-dropdown" id="profileDropdown" type="button">
+                        <div class="profile-avatar">Sr</div>
+                        <div class="profile-info">
+                            <span class="profile-name">Sr</span>
+                            <span class="profile-role">HR Manager</span>
+                        </div>
+                        <i class="bi bi-chevron-down profile-caret"></i>
+                    </button>
+
+                    <div class="profile-menu" id="profileMenu">
+                        <div class="profile-menu-header">
+                            <div class="profile-menu-email">hr@italento.com</div>
+                        </div>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-people-fill"></i>
+                            <span>Manage Admin</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-person-fill"></i>
+                            <span>Manage User</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>Mail History</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-calendar-event"></i>
+                            <span>Scheduled Meetings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Settings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            <span>Unassign Candidates</span>
+                        </button>
+
+                        <button class="profile-menu-item logout" type="button">
+                            <i class="bi bi-power"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-content">
+            <!-- Welcome Header -->
+              <div class="welcome-header">
+                <div class="welcome-header-left">
+                    <h1 class="welcome-title">Dashboard Overview</h1>
+                    <p class="welcome-subtitle">Welcome back! Here's what's happening with your hiring today.</p>
+                </div>
+                <div class="welcome-header-actions">
+                    <button class="upload-action-btn excel-btn" id="openExcelUpload" onclick="openExcelModal()">
+                        <div class="upload-btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        </div>
+                        <div class="upload-btn-text">
+                            <span class="upload-btn-label">Excel Upload</span>
+                            <span class="upload-btn-sub">Import candidates</span>
+                        </div>
+                        <div class="upload-btn-badge">XLSX</div>
+                    </button>
+                    <button class="upload-action-btn pdf-btn" id="openPdfUpload" onclick="openPdfModal()">
+                        <div class="upload-btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        </div>
+                        <div class="upload-btn-text">
+                            <span class="upload-btn-label">PDF Upload</span>
+                            <span class="upload-btn-sub">Import resumes</span>
+                        </div>
+                        <div class="upload-btn-badge">PDF</div>
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-card clickable-stat" data-filter="all">
+                    <div class="stat-header">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-people"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="statTotalCandidates">156</div>
+                    <div class="stat-label">Total Candidates</div>
+                </div>
+
+                <div class="stat-card clickable-stat" data-filter="new">
+                    <div class="stat-header">
+                        <div class="stat-icon teal">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="statNewCandidates">24</div>
+                    <div class="stat-label">New</div>
+                </div>
+
+                <div class="stat-card clickable-stat" data-filter="shortlist">
+                    <div class="stat-header">
+                        <div class="stat-icon purple">
+                            <i class="bi bi-bookmark-star"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="statShortlistedCandidates">42</div>
+                    <div class="stat-label">Shortlisted</div>
+                </div>
+
+                <div class="stat-card clickable-stat" data-filter="interview">
+                    <div class="stat-header">
+                        <div class="stat-icon orange">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="statInterviewCandidates">18</div>
+                    <div class="stat-label">Interview</div>
+                </div>
+
+                <div class="stat-card clickable-stat" data-filter="hired">
+                    <div class="stat-header">
+                        <div class="stat-icon green">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="statHiredCandidates">12</div>
+                    <div class="stat-label">Hired</div>
+                </div>
+            </div>
+
+            <!-- Hiring Pipeline Chart -->
+            <div class="chart-section">
+                <div class="chart-card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title">Hiring Pipeline</h3>
+                        <div class="card-actions">
+                            <button class="btn-icon" title="Download" type="button">
+                                <i class="bi bi-download"></i>
+                            </button>
+                            <button class="btn-icon" title="More options" type="button">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="pipelineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Departments Section -->
+            <div class="departments-section">
+                <div class="dept-grid" id="deptGrid"></div>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="activity-section">
+                <div class="activity-grid">
+                    <!-- AI Recommendations -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <h4 class="activity-title">
+                                <i class="bi bi-stars"></i>
+                                AI Recommended
+                            </h4>
+                            <span class="ai-badge">AI</span>
+                        </div>
+                        <div id="recommendationsList">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Interview Reminders -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <h4 class="activity-title">
+                                <i class="bi bi-calendar-event"></i>
+                                Today's Interviews
+                            </h4>
+                        </div>
+                        <div id="interviewReminders">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <h4 class="activity-title">
+                                <i class="bi bi-activity"></i>
+                                Recent Activity
+                            </h4>
+                        </div>
+                        <div class="timeline" id="activityTimeline">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ============================================================
+         BULK EXCEL UPLOAD MODAL
+    ============================================================ -->
+    <div class="bulk-modal-overlay" id="excelModalOverlay" onclick="handleOverlayClick(event, 'excelModalOverlay')">
+        <div class="bulk-modal" id="excelModal">
+            <!-- Modal Header -->
+            <div class="bulk-modal-header excel-header">
+                <div class="modal-header-left">
+                    <div class="modal-icon excel-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M9 9l6 6M15 9l-6 6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="modal-title">Bulk Excel Import</h2>
+                        <p class="modal-subtitle">Upload .xlsx files and map fields to iTalento</p>
+                    </div>
+                </div>
+                <button class="modal-close-btn" onclick="closeExcelModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step-item active" id="excelStep1Ind">
+                    <div class="step-circle">1</div>
+                    <span>Upload File</span>
+                </div>
+                <div class="step-line" id="excelStepLine"></div>
+                <div class="step-item" id="excelStep2Ind">
+                    <div class="step-circle">2</div>
+                    <span>Map Fields</span>
+                </div>
+                <div class="step-line" id="excelStepLine2"></div>
+                <div class="step-item" id="excelStep3Ind">
+                    <div class="step-circle">3</div>
+                    <span>Import</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Upload -->
+            <div class="modal-body" id="excelStep1">
+                <div class="upload-zone excel-zone" id="excelDropZone"
+                    ondragover="handleDragOver(event, 'excelDropZone')" ondragleave="handleDragLeave('excelDropZone')"
+                    ondrop="handleExcelDrop(event)">
+                    <div class="upload-zone-content">
+                        <div class="upload-zone-icon excel-zone-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <path d="M8 13h2.5M8 17h8" />
+                            </svg>
+                        </div>
+                        <h3 class="upload-zone-title">Drop your Excel file here</h3>
+                        <p class="upload-zone-sub">or click to browse files</p>
+                        <div class="upload-zone-formats">
+                            <span class="format-tag">XLSX</span>
+                            <span class="format-tag">XLS</span>
+                            <span class="format-tag">Max 50MB</span>
+                        </div>
+                        <button class="browse-btn excel-browse"
+                            onclick="document.getElementById('excelFileInput').click()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="17 8 12 3 7 8" />
+                                <line x1="12" y1="3" x2="12" y2="15" />
+                            </svg>
+                            Browse File
+                        </button>
+                        <input type="file" id="excelFileInput" accept=".xlsx,.xls" style="display:none"
+                            onchange="handleExcelFile(this.files[0])">
+                    </div>
+                    <div class="drag-overlay" id="excelDragOverlay">
+                        <div class="drag-overlay-icon">📊</div>
+                        <span>Release to upload!</span>
+                    </div>
+                </div>
+
+                <!-- Date & Source Options -->
+                <div class="options-grid">
+                    <div class="option-group-card">
+                        <h4 class="option-group-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            Date Field
+                        </h4>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="excelDate" value="default" checked>
+                                <div class="radio-custom"></div>
+                                <span>Default Date (Now)</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="excelDate" value="manual">
+                                <div class="radio-custom"></div>
+                                <span>Manual Date</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="excelDate" value="file">
+                                <div class="radio-custom"></div>
+                                <span>Default File Date</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="option-group-card">
+                        <h4 class="option-group-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4" />
+                            </svg>
+                            Source Field
+                        </h4>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="excelSource" value="manual">
+                                <div class="radio-custom"></div>
+                                <span>Manual Source</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="excelSource" value="auto" checked>
+                                <div class="radio-custom"></div>
+                                <span>Default File Source</span>
+                            </label>
+                        </div>
+                        <input type="text" class="source-input" id="excelSourceInput" placeholder="Enter source name..."
+                            style="display:none">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn-modal-secondary" onclick="closeExcelModal()">Cancel</button>
+                    <button class="btn-modal-primary excel-primary" id="excelNextBtn" onclick="excelGoToStep2()"
+                        disabled>
+                        Next: Map Fields
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Field Mapping -->
+            <div class="modal-body" id="excelStep2" style="display:none">
+                <div class="mapping-info-bar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    Only checked columns will be imported. Automatically matched columns will be pre-checked.
+                </div>
+                <div class="mapping-table-wrap">
+                    <table class="mapping-table">
+                        <thead>
+                            <tr>
+                                <th>Fields From File</th>
+                                <th>iTalento Fields</th>
+                                <th class="text-center">Import <input type="checkbox" id="selectAllCols"
+                                        onchange="toggleAllCols(this)" style="margin-left:6px"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="mappingTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-modal-secondary" onclick="excelGoToStep1()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                        Back
+                    </button>
+                    <button class="btn-modal-primary excel-primary" onclick="excelGoToStep3()">
+                        Import Candidates
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Processing -->
+            <div class="modal-body" id="excelStep3" style="display:none">
+                <div class="processing-view" id="excelProcessingView">
+                    <div class="processing-animation">
+                        <div class="processing-ring"></div>
+                        <div class="processing-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M9 9l6 6M15 9l-6 6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="processing-title">Importing Candidates...</h3>
+                    <p class="processing-sub">Please wait while we process your Excel file</p>
+                    <div class="import-progress">
+                        <div class="progress-bar-wrap">
+                            <div class="progress-bar-fill excel-progress" id="excelProgressBar"></div>
+                        </div>
+                        <span class="progress-percent" id="excelProgressText">0%</span>
+                    </div>
+                </div>
+                <div class="success-view" id="excelSuccessView" style="display:none">
+                    <div class="success-animation">
+                        <div class="success-circle">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="success-title">Import Complete!</h3>
+                    <p class="success-sub" id="excelSuccessMsg">Candidates imported successfully.</p>
+                    <button class="btn-modal-primary excel-primary" onclick="closeExcelModal()" style="margin-top:20px">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         BULK PDF UPLOAD MODAL
+    ============================================================ -->
+    <div class="bulk-modal-overlay" id="pdfModalOverlay" onclick="handleOverlayClick(event, 'pdfModalOverlay')">
+        <div class="bulk-modal" id="pdfModal">
+            <!-- Modal Header -->
+            <div class="bulk-modal-header pdf-header">
+                <div class="modal-header-left">
+                    <div class="modal-icon pdf-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="modal-title">Bulk PDF Import</h2>
+                        <p class="modal-subtitle">Upload multiple PDF resumes at once</p>
+                    </div>
+                </div>
+                <button class="modal-close-btn" onclick="closePdfModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="pdf-layout">
+                    <!-- Left Panel: Upload -->
+                    <div class="pdf-left-panel">
+                        <h4 class="panel-title">Upload PDFs</h4>
+                        <div class="upload-zone pdf-zone" id="pdfDropZone"
+                            ondragover="handleDragOver(event, 'pdfDropZone')"
+                            ondragleave="handleDragLeave('pdfDropZone')" ondrop="handlePdfDrop(event)">
+                            <div class="upload-zone-content">
+                                <div class="upload-zone-icon pdf-zone-icon">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                    </svg>
+                                </div>
+                                <p class="upload-zone-sub">Drop PDFs or click browse</p>
+                                <div class="upload-zone-formats">
+                                    <span class="format-tag pdf-tag">PDF only</span>
+                                    <span class="format-tag pdf-tag">Max 10 files</span>
+                                </div>
+                                <button class="browse-btn pdf-browse"
+                                    onclick="document.getElementById('pdfFileInput').click()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="17 8 12 3 7 8" />
+                                        <line x1="12" y1="3" x2="12" y2="15" />
+                                    </svg>
+                                    Browse Files
+                                </button>
+                                <input type="file" id="pdfFileInput" accept=".pdf" multiple style="display:none"
+                                    onchange="handlePdfFiles(this.files)">
+                            </div>
+                            <div class="drag-overlay pdf-drag-overlay" id="pdfDragOverlay">
+                                <div class="drag-overlay-icon">📄</div>
+                                <span>Release to upload!</span>
+                            </div>
+                        </div>
+
+                        <div class="option-group-card" style="margin-top:14px">
+                            <h4 class="option-group-title">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4" />
+                                </svg>
+                                Source
+                            </h4>
+                            <input type="text" class="source-input" id="pdfSourceInput"
+                                placeholder="Enter source name...">
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: File List -->
+                    <div class="pdf-right-panel">
+                        <div class="pdf-list-header">
+                            <h4 class="panel-title">Selected PDF Files</h4>
+                            <span class="pdf-file-count" id="pdfFileCount">0 / 10 files</span>
+                        </div>
+                        <div class="pdf-list-wrap">
+                            <div class="pdf-empty-state" id="pdfEmptyState">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                </svg>
+                                <p>No files selected yet</p>
+                            </div>
+                            <div class="pdf-file-list" id="pdfFileList"></div>
+                        </div>
+
+                        <!-- Progress (shown on submit) -->
+                        <div class="pdf-import-progress" id="pdfImportProgress" style="display:none">
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill pdf-progress" id="pdfProgressBar"></div>
+                            </div>
+                            <span class="progress-percent" id="pdfProgressText">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn-modal-secondary" onclick="closePdfModal()">Cancel</button>
+                    <button class="btn-modal-primary pdf-primary" id="pdfSubmitBtn" onclick="submitPdfImport()"
+                        disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="17 8 12 3 7 8" />
+                            <line x1="12" y1="3" x2="12" y2="15" />
+                        </svg>
+                        Submit Import
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/bulk-upload.js"></script>
+</body>
+
+</html>

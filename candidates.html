@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TalentFlow ATS - Candidates</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Preview Overlay -->
+    <div class="preview-overlay" id="previewOverlay"></div>
+
+    <!-- Drawer Overlay -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <span class="logo-text">iTalento</span>
+            </a>
+        </div>
+
+        <nav class="nav-section">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="departments.html" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    <span>Departments</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="candidates.html" class="nav-link active">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Candidates</span>
+                    <span class="nav-badge" id="sidebarCandidateCount">156</span>
+                </a>
+            </div>
+
+            <!-- <div class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports</span>
+                </a>
+            </div> -->
+
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-header">
+                <span>Quick Filters</span>
+                <button class="filter-toggle" id="filterToggle" type="button">
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="filter-content show" id="filterContent">
+                <div class="filter-group">
+                    <label class="filter-label">Department</label>
+                    <select class="filter-select">
+                        <option>All Departments</option>
+                        <option>Engineering</option>
+                        <option>Design</option>
+                        <option>Marketing</option>
+                        <option>Sales</option>
+                        <option>HR</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Job Status</label>
+                    <div class="filter-chips">
+                        <button class="filter-chip active" type="button">Active</button>
+                        <button class="filter-chip" type="button">Paused</button>
+                        <button class="filter-chip" type="button">Closed</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Location</label>
+                    <select class="filter-select">
+                        <option>All Locations</option>
+                        <option>Remote</option>
+                        <option>New York</option>
+                        <option>San Francisco</option>
+                        <option>London</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Recruiter</label>
+                    <select class="filter-select">
+                        <option>All Recruiters</option>
+                        <option>Sarah Johnson</option>
+                        <option>Mike Chen</option>
+                        <option>Emily Davis</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Date Range</label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked />
+                        <span>Last 7 days</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" />
+                        <span>Last 30 days</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" />
+                        <span>This quarter</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" type="button">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search candidates, jobs, or departments..." />
+                </div>
+
+                <button class="search-icon-mobile" id="searchMobileToggle" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <div class="navbar-actions">
+                <button class="notification-btn" id="notificationBtn" type="button">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <!-- <button class="btn-post-job" id="postJobBtn" type="button">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Post Job</span>
+                </button> -->
+
+               <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+                    <button class="profile-dropdown" id="profileDropdown" type="button">
+                        <div class="profile-avatar">Sr</div>
+                        <div class="profile-info">
+                            <span class="profile-name">Sr</span>
+                            <span class="profile-role">HR Manager</span>
+                        </div>
+                        <i class="bi bi-chevron-down profile-caret"></i>
+                    </button>
+
+                    <div class="profile-menu" id="profileMenu">
+                        <div class="profile-menu-header">
+                            <div class="profile-menu-email">hr@italento.com</div>
+                        </div>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-people-fill"></i>
+                            <span>Manage Admin</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-person-fill"></i>
+                            <span>Manage User</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>Mail History</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-calendar-event"></i>
+                            <span>Scheduled Meetings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Settings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            <span>Unassign Candidates</span>
+                        </button>
+
+                        <button class="profile-menu-item logout" type="button">
+                            <i class="bi bi-power"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Candidate Page Content -->
+        <div class="candidate-page">
+            <div class="page-header">
+                <div class="page-title-section">
+                    <h1>Candidates</h1>
+                    <p class="page-subtitle">Manage and track your candidate pipeline</p>
+                </div>
+
+                <div class="page-actions">
+                    <button class="btn-add-candidate" type="button" data-bs-toggle="modal"
+                        data-bs-target="#addCandidateModal">
+                        <i class="bi bi-person-plus"></i>
+                        Add Candidate
+                    </button>
+
+                    <button class="btn-customize" id="btnCustomize" type="button">
+                        <i class="bi bi-layout-three-columns"></i>
+                        Customize Columns
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all" type="button">
+                    All Responses <span class="count" id="countAll">0</span>
+                </button>
+
+                <button class="filter-tab" data-filter="new" type="button">
+                    New <span class="count" id="countNew">0</span>
+                </button>
+
+                <button class="filter-tab" data-filter="shortlist" type="button">
+                    Shortlisted <span class="count" id="countShortlist">0</span>
+                </button>
+
+                <button class="filter-tab" data-filter="interview" type="button">
+                    Interview <span class="count" id="countInterview">0</span>
+                </button>
+
+                <button class="filter-tab" data-filter="hired" type="button">
+                    Hired <span class="count" id="countHired">0</span>
+                </button>
+
+                <button class="filter-tab" data-filter="maybe" type="button">
+                    Maybe <span class="count" id="countMaybe">0</span>
+                </button>
+
+                <button class="filter-tab" data-filter="reject" type="button">
+                    Rejected <span class="count" id="countReject">0</span>
+                </button>
+            </div>
+
+            <!-- Desktop Table -->
+            <div class="candidate-table-container table-container mt-4">
+                <div class="table-header">
+                    <div class="table-info" id="tableInfo">
+                        Showing <strong>0</strong> of <strong>0</strong> responses
+                    </div>
+
+                    <div class="table-actions">
+                        <div class="search-table">
+                            <i class="bi bi-search"></i>
+                            <input type="text" placeholder="Search candidates..." id="tableSearch" />
+                        </div>
+                        <button class="btn-master-filter" id="openMasterFilter" type="button">
+                            <i class="bi bi-funnel"></i>
+                            <span>Filters</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-scroll-wrap">
+                    <table class="candidate-table">
+                        <thead>
+                            <tr>
+                                <th class="col-checkbox sticky-col sticky-checkbox">
+                                    <input type="checkbox" class="custom-checkbox" id="selectAll" />
+                                </th>
+                                <th class="col-avatar sticky-col sticky-avatar">Profile</th>
+                                <th class="col-name sticky-col sticky-name" data-column="name">Candidate Name</th>
+                                <th class="col-designation" data-column="designation">Designation</th>
+                                <th class="col-company" data-column="company">Company Name</th>
+                                <th class="col-skills" data-column="skills">Key Skills</th>
+                                <th class="col-phone" data-column="phone">Phone Number</th>
+                                <th class="col-status" data-column="status">Status</th>
+                                <th class="col-actions sticky-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="candidateTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <div class="pagination-info" id="paginationInfo">Showing 0 results</div>
+                    <div class="pagination">
+                        <button class="page-btn" disabled type="button">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="page-btn active" type="button">1</button>
+                        <button class="page-btn" disabled type="button">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Cards -->
+            <div class="mobile-cards" id="mobileCards"></div>
+        </div>
+    </div>
+
+    <!-- Candidate Preview Panel -->
+    <aside class="candidate-preview-panel" id="candidatePreviewPanel">
+        <div class="preview-panel-header">
+            <div class="preview-topbar">
+                <div class="preview-nav-group">
+                    <button class="preview-nav-btn" id="prevCandidateBtn" type="button">
+                        <i class="bi bi-chevron-left"></i>
+                        Prev
+                    </button>
+                    <button class="preview-nav-btn" id="nextCandidateBtn" type="button">
+                        Next
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+                <button class="preview-close-btn" id="closePreviewPanel" type="button">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <div class="preview-candidate-hero">
+                <img src="" alt="" class="preview-candidate-avatar" id="previewAvatar" />
+                <div class="preview-candidate-meta">
+                    <div class="preview-candidate-top">
+                        <h2 class="preview-candidate-name" id="previewName">Candidate Name</h2>
+                        <span class="badge-recommended" id="previewRecommendedBadge" style="display: none;">
+                            Recommended
+                        </span>
+                    </div>
+                    <p class="preview-summary-line" id="previewSummaryLine"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-panel-body">
+            <div class="preview-section">
+                <div class="preview-actions-primary">
+                    <button class="btn-preview-primary btn-shortlist" id="previewShortlistBtn" type="button">
+                        <i class="bi bi-check-circle"></i>
+                        Shortlist
+                    </button>
+                    <button class="btn-preview-primary btn-maybe" id="previewMaybeBtn" type="button">
+                        <i class="bi bi-dash-circle"></i>
+                        Maybe
+                    </button>
+                    <button class="btn-preview-primary btn-reject" id="previewRejectBtn" type="button">
+                        <i class="bi bi-x-circle"></i>
+                        Reject
+                    </button>
+                </div>
+
+                <div class="preview-actions-secondary">
+                    <button class="btn-preview-secondary" type="button">
+                        <i class="bi bi-envelope"></i>
+                        Email
+                    </button>
+                    <button class="btn-preview-secondary" type="button">
+                        <i class="bi bi-forward"></i>
+                        Forward
+                    </button>
+                    <button class="btn-preview-secondary" type="button">
+                        <i class="bi bi-download"></i>
+                        Download
+                    </button>
+                    <button class="btn-preview-secondary" id="previewDeleteBtn" type="button">
+                        <i class="bi bi-trash3"></i>
+                        Delete
+                    </button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="section-title">Contact</div>
+
+                <div class="contact-grid">
+                    <div class="contact-info-main">
+                        <div class="contact-label">Phone Number</div>
+                        <div class="contact-value" id="previewPhone">-</div>
+                    </div>
+
+                    <button class="btn-phone" type="button">
+                        <i class="bi bi-calendar-event"></i>
+                        Schedule Interview
+                    </button>
+
+                    <button class="btn-phone" type="button">
+                        <i class="bi bi-headset"></i>
+                        Call from App
+                    </button>
+                </div>
+
+                <div class="preview-status-wrap">
+                    <div class="contact-label">Status</div>
+                    <div class="status-dropdown">
+                        <button class="btn-status" id="previewStatusBtn" type="button">
+                            <span class="status-content">
+                                <span class="status-dot shortlist"></span>
+                                <span>Set Status</span>
+                            </span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+
+                        <div class="status-menu">
+                            <div class="status-item" data-status="new">
+                                <span class="status-dot new"></span>
+                                New
+                            </div>
+                            <div class="status-item" data-status="shortlist">
+                                <span class="status-dot shortlist"></span>
+                                Shortlisted
+                            </div>
+                            <div class="status-item" data-status="interview">
+                                <span class="status-dot interview"></span>
+                                Interview
+                            </div>
+                            <div class="status-item" data-status="hired">
+                                <span class="status-dot hired"></span>
+                                Hired
+                            </div>
+                            <div class="status-item" data-status="maybe">
+                                <span class="status-dot maybe"></span>
+                                Maybe
+                            </div>
+                            <div class="status-item" data-status="reject">
+                                <span class="status-dot reject"></span>
+                                Rejected
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-tabs">
+                    <button class="preview-tab active" data-tab="summary" type="button">Summary</button>
+                    <button class="preview-tab" data-tab="experience" type="button">Work Experience</button>
+                    <button class="preview-tab" data-tab="education" type="button">Education</button>
+                    <button class="preview-tab" data-tab="skills" type="button">IT Skills</button>
+                    <button class="preview-tab" data-tab="languages" type="button">Languages</button>
+                    <button class="preview-tab" data-tab="other" type="button">Other Details</button>
+                    <button class="preview-tab" data-tab="resume" type="button">Resume</button>
+                </div>
+
+                <div class="preview-tab-content active" id="tab-summary">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="info-item-label">Current Role</div>
+                            <div class="info-item-value" id="tabSummaryRole">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Current Company</div>
+                            <div class="info-item-value" id="tabSummaryCompany">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Professional Snapshot</div>
+                            <div class="info-item-value" id="tabSummaryText">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-tab-content" id="tab-experience">
+                    <div id="tabExperience"></div>
+                </div>
+
+                <div class="preview-tab-content" id="tab-education">
+                    <div class="info-list" id="tabEducation"></div>
+                </div>
+
+                <div class="preview-tab-content" id="tab-skills">
+                    <div class="skills-wrap" id="tabSkills"></div>
+                </div>
+
+                <div class="preview-tab-content" id="tab-languages">
+                    <div class="info-list" id="tabLanguages"></div>
+                </div>
+
+                <div class="preview-tab-content" id="tab-other">
+                    <div class="info-list" id="tabOther"></div>
+                </div>
+
+                <div class="preview-tab-content" id="tab-resume">
+                    <div class="resume-viewer">
+                        <div class="resume-toolbar">
+                            <div class="resume-toolbar-title">Resume Preview</div>
+                            <button class="btn-phone" type="button">
+                                <i class="bi bi-download"></i>
+                                Download Resume
+                            </button>
+                        </div>
+                        <div class="resume-paper" id="resumePaper"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="section-title">AI Matched Similar Candidates</div>
+                <div id="similarCandidatesContainer"></div>
+                <button class="btn-view-all" type="button">View all similar candidates</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Customize Columns Drawer -->
+    <div class="customize-drawer" id="customizeDrawer">
+        <div class="drawer-header">
+            <div class="drawer-header-left">
+                <div class="drawer-header-icon">
+                    <i class="bi bi-layout-three-columns"></i>
+                </div>
+                <div>
+                    <h2 class="drawer-title">Customize Columns</h2>
+                    <p class="drawer-subtitle">Drag to reorder • Toggle to show/hide</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="closeDrawer" type="button">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="drawer-body">
+            <div class="drawer-section-header">
+                <span class="drawer-section-title">Column Visibility & Order</span>
+                <span class="drawer-section-hint"><i class="bi bi-arrows-move"></i> Drag to reorder</span>
+            </div>
+
+            <div class="column-list dnd-list" id="columnDndList">
+
+                <!-- Fixed: Candidate Name -->
+                <div class="column-item column-item-locked" data-col="name">
+                    <div class="col-drag-handle locked">
+                        <i class="bi bi-lock-fill"></i>
+                    </div>
+                    <div class="col-item-icon name-icon">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <span class="col-item-label">Candidate Name</span>
+                    <span class="col-locked-badge">Required</span>
+                    <input type="checkbox" id="col-name" checked disabled class="col-toggle" />
+                </div>
+
+                <!-- Designation -->
+                <div class="column-item" draggable="true" data-col="designation">
+                    <div class="col-drag-handle">
+                        <i class="bi bi-grip-vertical"></i>
+                    </div>
+                    <div class="col-item-icon designation-icon">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+                    <span class="col-item-label">Designation</span>
+                    <label class="col-toggle-wrap">
+                        <input type="checkbox" id="col-designation" checked class="col-toggle col-toggle-real" />
+                        <span class="col-toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Company Name -->
+                <div class="column-item" draggable="true" data-col="company">
+                    <div class="col-drag-handle">
+                        <i class="bi bi-grip-vertical"></i>
+                    </div>
+                    <div class="col-item-icon company-icon">
+                        <i class="bi bi-building-fill"></i>
+                    </div>
+                    <span class="col-item-label">Company Name</span>
+                    <label class="col-toggle-wrap">
+                        <input type="checkbox" id="col-company" checked class="col-toggle col-toggle-real" />
+                        <span class="col-toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Key Skills -->
+                <div class="column-item" draggable="true" data-col="skills">
+                    <div class="col-drag-handle">
+                        <i class="bi bi-grip-vertical"></i>
+                    </div>
+                    <div class="col-item-icon skills-icon">
+                        <i class="bi bi-stars"></i>
+                    </div>
+                    <span class="col-item-label">Key Skills</span>
+                    <label class="col-toggle-wrap">
+                        <input type="checkbox" id="col-skills" checked class="col-toggle col-toggle-real" />
+                        <span class="col-toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="column-item" draggable="true" data-col="phone">
+                    <div class="col-drag-handle">
+                        <i class="bi bi-grip-vertical"></i>
+                    </div>
+                    <div class="col-item-icon phone-icon">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <span class="col-item-label">Phone Number</span>
+                    <label class="col-toggle-wrap">
+                        <input type="checkbox" id="col-phone" checked class="col-toggle col-toggle-real" />
+                        <span class="col-toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Fixed: Status -->
+                <div class="column-item column-item-locked" data-col="status">
+                    <div class="col-drag-handle locked">
+                        <i class="bi bi-lock-fill"></i>
+                    </div>
+                    <div class="col-item-icon status-icon">
+                        <i class="bi bi-circle-fill"></i>
+                    </div>
+                    <span class="col-item-label">Status</span>
+                    <span class="col-locked-badge">Required</span>
+                    <input type="checkbox" id="col-status" checked disabled class="col-toggle" />
+                </div>
+
+            </div>
+
+            <div class="drawer-info-box">
+                <i class="bi bi-info-circle"></i>
+                <span>Drag column rows to change their display order in the table.</span>
+            </div>
+        </div>
+
+        <div class="drawer-footer">
+            <button class="btn-drawer-secondary" id="cancelColumns" type="button">
+                <i class="bi bi-x"></i> Cancel
+            </button>
+            <button class="btn-drawer-primary" id="applyColumns" type="button">
+                <i class="bi bi-check2"></i> Apply Changes
+            </button>
+        </div>
+    </div>
+
+    <!-- Add Candidate Modal -->
+
+    <div class="modal fade" id="addCandidateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered candidate-modal-dialog">
+            <div class="modal-content candidate-modal-content">
+                <form id="addCandidateForm" class="candidate-modal-form">
+                    <div class="modal-header candidate-modal-header">
+                        <h5 class="modal-title">Add Candidate</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body candidate-modal-body">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateNameInput">Candidate Name</label>
+                                <input type="text" class="form-control" id="candidateNameInput"
+                                    placeholder="Enter candidate name" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidatePhoneInput">Phone Number</label>
+                                <input type="text" class="form-control" id="candidatePhoneInput"
+                                    placeholder="Enter phone number" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateDesignationInput">Designation</label>
+                                <input type="text" class="form-control" id="candidateDesignationInput"
+                                    placeholder="Enter designation" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateCompanyInput">Company</label>
+                                <input type="text" class="form-control" id="candidateCompanyInput"
+                                    placeholder="Enter company name" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateDepartmentInput">Department</label>
+                                <select class="form-control candidate-select" id="candidateDepartmentInput" required>
+                                    <option value="">Select Department</option>
+                                    <option>Engineering</option>
+                                    <option>Human Resources</option>
+                                    <option>Marketing</option>
+                                    <option>Sales</option>
+                                    <option>Finance</option>
+                                    <option>Operations</option>
+                                    <option>Design</option>
+                                    <option>Customer Support</option>
+                                    <option>Legal</option>
+                                    <option>Product</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateLocationInput">Location</label>
+                                <input type="text" class="form-control" id="candidateLocationInput"
+                                    placeholder="Enter location" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateExperienceInput">Experience</label>
+                                <input type="text" class="form-control" id="candidateExperienceInput"
+                                    placeholder="Enter experience" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateDateInput">Created Date</label>
+                                <input type="date" class="form-control" id="candidateDateInput" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="candidateDayInput">Day</label>
+                                <input type="text" class="form-control" id="candidateDayInput"
+                                    placeholder="Auto-filled day" readonly />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label" for="candidateSkillsInput">Skills (comma separated)</label>
+                                <input type="text" class="form-control" id="candidateSkillsInput"
+                                    placeholder="Enter skills" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer candidate-modal-footer">
+                        <button type="button" class="btn-customize candidate-cancel-btn"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-add-candidate candidate-save-btn">
+                            <i class="bi bi-person-plus"></i>
+                            <span>Save Candidate</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="master-filter-overlay" id="masterFilterOverlay"></div>
+
+<aside class="master-filter-drawer" id="masterFilterDrawer">
+    <div class="master-filter-drawer-header">
+        <h3>Master Filter</h3>
+        <button class="master-filter-close" id="closeMasterFilter" type="button">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <div class="master-filter-drawer-body">
+        <div class="master-filter-builder">
+            <div class="master-filter-builder-grid">
+                <div class="master-filter-builder-field">
+                    <label for="filterColumnSelect">Column</label>
+                    <select id="filterColumnSelect" class="master-filter-control">
+                        <option value="">Select Column</option>
+                        <option value="name">Name</option>
+                        <option value="designation">Designation</option>
+                        <option value="company">Company</option>
+                        <option value="department">Department</option>
+                        <option value="location">Location</option>
+                        <option value="experience">Experience</option>
+                        <option value="phone">Phone Number</option>
+                        <option value="skills">Skills</option>
+                        <option value="status">Status</option>
+                        <option value="createdDate">Created Date</option>
+                        <option value="createdDay">Day</option>
+                        <option value="recommended">Recommended</option>
+                    </select>
+                </div>
+
+                <div class="master-filter-builder-field">
+                    <label for="filterValueInput">Value</label>
+                    <input type="text" id="filterValueInput" class="master-filter-control" placeholder="Enter the value">
+                </div>
+
+                <div class="master-filter-builder-action">
+                    <label>&nbsp;</label>
+                    <button class="btn-add-filter-rule" id="addFilterRule" type="button">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="master-filter-rules" id="masterFilterRules">
+                <!-- Added rules appear here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="master-filter-drawer-footer">
+        <button class="btn-master-secondary" id="resetMasterFilters" type="button">Reset</button>
+        <button class="btn-master-primary" id="applyMasterFilters" type="button">Apply</button>
+    </div>
+</aside>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/candidate.js"></script>
+</body>
+
+</html>

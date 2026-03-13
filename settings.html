@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentFlow ATS - Settings</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+   
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <span class="logo-text">iTalento</span>
+            </a>
+        </div>
+
+        <nav class="nav-section">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="departments.html" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    <span>Departments</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="candidates.html" class="nav-link">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Candidates</span>
+                    <span class="nav-badge">156</span>
+                </a>
+            </div>
+        
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link active">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </nav>
+
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search candidates, jobs, or departments...">
+                </div>
+
+                <button class="search-icon-mobile" id="searchMobileToggle">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <div class="navbar-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <!-- <button class="btn-post-job" id="postJobBtn">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Post Job</span>
+                </button> -->
+
+              <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+                    <button class="profile-dropdown" id="profileDropdown" type="button">
+                        <div class="profile-avatar">Sr</div>
+                        <div class="profile-info">
+                            <span class="profile-name">Sr</span>
+                            <span class="profile-role">HR Manager</span>
+                        </div>
+                        <i class="bi bi-chevron-down profile-caret"></i>
+                    </button>
+
+                    <div class="profile-menu" id="profileMenu">
+                        <div class="profile-menu-header">
+                            <div class="profile-menu-email">hr@italento.com</div>
+                        </div>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-people-fill"></i>
+                            <span>Manage Admin</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-person-fill"></i>
+                            <span>Manage User</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>Mail History</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-calendar-event"></i>
+                            <span>Scheduled Meetings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Settings</span>
+                        </button>
+
+                        <button class="profile-menu-item" type="button">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            <span>Unassign Candidates</span>
+                        </button>
+
+                        <button class="profile-menu-item logout" type="button">
+                            <i class="bi bi-power"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div> 
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-content">
+            <div class="settings-page-header">
+                <div class="settings-title-wrap">
+                    <h1 class="settings-main-title">SETTINGS</h1>
+                    <p class="settings-subtitle">Manage your connections and configurations</p>
+                </div>
+                <button class="btn-back-modern" onclick="window.history.back()">
+                    <i class="bi bi-arrow-left"></i> Back
+                </button>
+            </div>
+
+            <div class="settings-container">
+                <!-- Advanced Horizontal Tabs -->
+                <div class="settings-horizontal-menu">
+                    <button class="settings-nav-btn active" data-target="googleSettings">
+                        Google Settings
+                    </button>
+                    <button class="settings-nav-btn" data-target="emailSettings">
+                        Email Settings
+                    </button>
+                </div>
+
+                <div class="settings-content-area">
+                    <!-- Google Settings -->
+                    <div class="settings-pane active" id="googleSettings">
+                        <div class="settings-grid">
+                            <!-- Google Drive Card -->
+                            <div class="settings-modern-card">
+                                <div>
+                                    <div class="card-icon-header">
+                                        <div class="icon-circle drive-icon"><i class="bi bi-hdd-fill"></i></div>
+                                        <h3>Google Drive Settings</h3>
+                                    </div>
+                                    <div class="settings-form">
+                                        <div class="form-floating-custom">
+                                            <label>Application Name</label>
+                                            <input type="text" value="iTalento">
+                                        </div>
+                                        <div class="form-floating-custom">
+                                            <label>Drive ID</label>
+                                            <input type="text" value="">
+                                        </div>
+                                        <div class="form-floating-custom">
+                                            <label>Google Credentials Path</label>
+                                            <input type="text" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-wrapper">
+                                    <button class="btn-save-modern">Update</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Google Sheets Card -->
+                            <div class="settings-modern-card">
+                                <div>
+                                    <div class="card-icon-header">
+                                        <div class="icon-circle sheets-icon"><i class="bi bi-file-earmark-spreadsheet-fill"></i></div>
+                                        <h3>Google Sheet Settings</h3>
+                                    </div>
+                                    <div class="settings-form">
+                                        <div class="form-floating-custom">
+                                            <label>Application Name</label>
+                                            <input type="text" value="iTalento">
+                                        </div>
+                                        <div class="form-floating-custom">
+                                            <label>Sheet ID</label>
+                                            <input type="text" value="">
+                                        </div>
+                                        <div class="form-floating-custom">
+                                            <label>Sheet Range</label>
+                                            <input type="text" value="">
+                                            <span class="help-text">Example: Sheet1!A1:B2</span>
+                                        </div>
+                                        <div class="form-floating-custom">
+                                            <label>Google Credentials Path</label>
+                                            <input type="text" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-wrapper">
+                                    <button class="btn-save-modern">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Settings -->
+                    <div class="settings-pane" id="emailSettings">
+                        <div class="settings-grid">
+                            <div class="settings-modern-card">
+                                <div>
+                                    <div class="card-icon-header">
+                                        <div class="icon-circle email-icon"><i class="bi bi-diagram-3-fill"></i></div>
+                                        <h3>Share Within Organization</h3>
+                                    </div>
+                                    <div class="settings-form">
+                                        <div class="form-floating-custom">
+                                            <label>Domain Name</label>
+                                            <input type="text" value="decisive.in, plumb5.com">
+                                            <span class="help-text">Use comma-separated values Example : .gmail.com, .in, .com</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-wrapper">
+                                    <button class="btn-save-modern">Update</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-modern-card">
+                                <div>
+                                    <div class="card-icon-header">
+                                        <div class="icon-circle send-icon"><i class="bi bi-envelope-check-fill"></i></div>
+                                        <h3>From E-Mail Address</h3>
+                                    </div>
+                                    <div class="settings-form">
+                                        <div class="form-floating-custom">
+                                            <label>From E-Mail Address</label>
+                                            <select class="custom-select-modern">
+                                                <option>italentoitalento@plumb5.com</option>
+                                            </select>
+                                            <span class="help-text">All mails will be sent using the selected email address.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-wrapper">
+                                    <button class="btn-save-modern">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; color: #94a3b8; font-size: 13px;">
+                © 2025 - Plumb5's Resource Management
+            </div>
+        </main>    </div>
+
+    <!-- Add Department Modal -->
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/settings.js"></script>
+
+
+</body>
+
+</html>
