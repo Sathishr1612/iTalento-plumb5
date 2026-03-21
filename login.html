@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>iTalento Login</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,18 +32,25 @@
       box-sizing: border-box;
     }
 
+    html {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background:
-        radial-gradient(circle at 50% 50%, rgba(45, 138, 134, 0.05), transparent 22%),
+        radial-gradient(circle at 50% 50%, rgba(45, 138, 134, 0.06), transparent 50vmin),
         linear-gradient(180deg, #edf2f5 0%, #eef3f6 100%);
       min-height: 100vh;
       color: var(--text);
       overflow-x: hidden;
+      position: relative;
     }
 
     .auth-page {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -55,8 +62,8 @@
     .auth-page::before {
       content: "";
       position: absolute;
-      width: 760px;
-      height: 760px;
+      width: min(90vmin, 760px);
+      height: min(90vmin, 760px);
       border-radius: 50%;
       left: 50%;
       top: 50%;
@@ -66,13 +73,14 @@
         0 0 0 90px rgba(24, 54, 72, 0.018),
         0 0 0 180px rgba(24, 54, 72, 0.012);
       pointer-events: none;
+      z-index: 0;
     }
 
     .auth-page::after {
       content: "";
       position: absolute;
-      width: 420px;
-      height: 420px;
+      width: min(50vmin, 420px);
+      height: min(50vmin, 420px);
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -80,16 +88,17 @@
       background: radial-gradient(circle, rgba(45,138,134,0.08), transparent 72%);
       filter: blur(20px);
       pointer-events: none;
+      z-index: 0;
     }
 
     .auth-card {
       width: 100%;
-      max-width: 540px;
+      max-width: 480px;
       position: relative;
       z-index: 2;
       background: var(--card);
       border: 1px solid rgba(255,255,255,0.82);
-      border-radius: 30px;
+      border-radius: 20px;
       padding: 34px 28px 24px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(14px);
@@ -131,6 +140,7 @@
       justify-content: center;
       font-size: 26px;
       box-shadow: 0 14px 28px rgba(45, 138, 134, 0.20);
+      flex-shrink: 0;
     }
 
     .brand-text {
@@ -162,6 +172,7 @@
       color: var(--text);
       outline: none;
       transition: all 0.22s ease;
+      font-family: inherit;
     }
 
     .form-control::placeholder {
@@ -204,6 +215,11 @@
       color: var(--primary);
     }
 
+    .password-toggle:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     .btn-primary {
       width: 100%;
       height: 62px;
@@ -222,9 +238,12 @@
       transition: all 0.22s ease;
       box-shadow: 0 16px 32px rgba(45, 138, 134, 0.22);
       margin-top: 6px;
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover:not(:disabled) {
       transform: translateY(-1px);
       box-shadow: 0 20px 38px rgba(36, 111, 107, 0.26);
     }
@@ -235,12 +254,16 @@
       transform: none;
     }
 
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     .auth-links {
-      margin-top: 18px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      align-items: center;
+      gap: 10px;
     }
 
     .auth-link {
@@ -253,19 +276,23 @@
 
     .auth-link:hover {
       color: var(--primary-dark);
+      text-decoration: underline;
     }
 
     .form-message {
-      min-height: 18px;
-      font-size: 13px;
-      font-weight: 700;
+      min-height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      width: 100%;
+      padding: 0 8px;
     }
 
     .form-message.error { color: var(--danger); }
     .form-message.success { color: var(--success); }
 
     .auth-footer {
-      margin-top: 16px;
+      margin-top: 18px;
       color: #708194;
       font-size: 13px;
       line-height: 1.6;
@@ -274,12 +301,14 @@
 
     @media (max-width: 767px) {
       .auth-page {
-        padding: 20px 14px;
+        padding: 20px 16px;
+        align-items: flex-start;
+        padding-top: 10vh;
       }
 
       .auth-page::before {
-        width: 520px;
-        height: 520px;
+        width: min(120vmin, 520px);
+        height: min(120vmin, 520px);
         box-shadow:
           0 0 0 60px rgba(24, 54, 72, 0.018),
           0 0 0 120px rgba(24, 54, 72, 0.012);
@@ -287,7 +316,8 @@
 
       .auth-card {
         border-radius: 24px;
-        padding: 26px 18px 20px;
+        padding: 28px 22px 20px;
+        max-width: 100%;
       }
 
       .brand {
@@ -307,10 +337,10 @@
       }
 
       .form-control {
-        height: 54px;
+        height: 56px;
         border-radius: 16px;
-        font-size: 15px;
-        padding: 0 46px 0 16px;
+        font-size: 16px;
+        padding: 0 48px 0 16px;
       }
 
       .password-toggle {
@@ -321,7 +351,7 @@
       }
 
       .btn-primary {
-        height: 56px;
+        height: 58px;
         border-radius: 16px;
         font-size: 17px;
       }
@@ -332,6 +362,29 @@
 
       .auth-footer {
         font-size: 12px;
+        margin-top: 16px;
+      }
+
+      .form-message {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .auth-card {
+        padding: 24px 18px 18px;
+      }
+      
+      .brand-text {
+        font-size: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
     }
 
@@ -344,9 +397,9 @@
 <body>
   <main class="auth-page">
     <section class="auth-card">
-      <a href="#" class="brand">
+      <a href="#" class="brand" aria-label="iTalento Home">
         <div class="brand-icon">
-          <i class="bi bi-people-fill"></i>
+          <i class="bi bi-people-fill" aria-hidden="true"></i>
         </div>
         <div class="brand-text">iTalento</div>
       </a>
@@ -361,6 +414,8 @@
               placeholder="Enter your work email"
               autocomplete="email"
               required
+              aria-required="true"
+              aria-label="Work Email"
             />
           </div>
         </div>
@@ -374,21 +429,23 @@
               placeholder="Enter your password"
               autocomplete="current-password"
               required
+              aria-required="true"
+              aria-label="Password"
             />
-            <button type="button" class="password-toggle" id="togglePassword" aria-label="Toggle password">
-              <i class="bi bi-eye"></i>
+            <button type="button" class="password-toggle" id="togglePassword" aria-label="Toggle password visibility" title="Toggle password visibility">
+              <i class="bi bi-eye" aria-hidden="true"></i>
             </button>
           </div>
         </div>
 
         <button type="submit" class="btn-primary" id="loginBtn">
-          <i class="bi bi-box-arrow-in-right"></i>
+          <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
           <span>Log In</span>
         </button>
 
         <div class="auth-links">
-          <div id="formMessage" class="form-message"></div>
-          <a href="forgot-password.html" class="auth-link">Forgot Password?</a>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+          <a href="forgot.html" class="auth-link">Forgot Password?</a>
         </div>
       </form>
 
@@ -397,58 +454,73 @@
   </main>
 
   <script>
-    const loginForm = document.getElementById('loginForm');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const togglePassword = document.getElementById('togglePassword');
-    const loginBtn = document.getElementById('loginBtn');
-    const formMessage = document.getElementById('formMessage');
+    (function() {
+      const loginForm = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const togglePassword = document.getElementById('togglePassword');
+      const loginBtn = document.getElementById('loginBtn');
+      const formMessage = document.getElementById('formMessage');
 
-    togglePassword.addEventListener('click', () => {
-      const isPassword = passwordInput.type === 'password';
-      passwordInput.type = isPassword ? 'text' : 'password';
-      togglePassword.innerHTML = isPassword
-        ? '<i class="bi bi-eye-slash"></i>'
-        : '<i class="bi bi-eye"></i>';
-    });
+      togglePassword.addEventListener('click', function() {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        togglePassword.innerHTML = isPassword
+          ? '<i class="bi bi-eye-slash" aria-hidden="true"></i>'
+          : '<i class="bi bi-eye" aria-hidden="true"></i>';
+        togglePassword.setAttribute('aria-label', 
+          isPassword ? 'Hide password' : 'Show password'
+        );
+      });
 
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    function setMessage(type, text) {
-      formMessage.className = 'form-message ' + type;
-      formMessage.textContent = text;
-    }
-
-    loginForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      formMessage.className = 'form-message';
-      formMessage.textContent = '';
-
-      if (!email || !password) {
-        setMessage('error', 'Please enter email and password.');
-        return;
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       }
 
-      if (!validateEmail(email)) {
-        setMessage('error', 'Please enter a valid email address.');
-        return;
+      function setMessage(type, text) {
+        formMessage.className = 'form-message ' + type;
+        formMessage.textContent = text;
       }
 
-      loginBtn.disabled = true;
-      loginBtn.innerHTML = '<i class="bi bi-arrow-repeat" style="animation: spin .8s linear infinite;"></i><span>Logging in...</span>';
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      setTimeout(() => {
-        setMessage('success', 'Login validated. Connect this form to your backend.');
-        loginBtn.disabled = false;
-        loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i><span>Log In</span>';
-      }, 1200);
-    });
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        formMessage.className = 'form-message';
+        formMessage.textContent = '';
+
+        if (!email || !password) {
+          setMessage('error', 'Please enter email and password.');
+          return;
+        }
+
+        if (!validateEmail(email)) {
+          setMessage('error', 'Please enter a valid email address.');
+          return;
+        }
+
+        loginBtn.disabled = true;
+        loginBtn.innerHTML = '<i class="bi bi-arrow-repeat" style="animation: spin .8s linear infinite;" aria-hidden="true"></i><span>Logging in...</span>';
+
+        setTimeout(function() {
+          setMessage('success', 'Login validated. Connect this form to your backend.');
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right" aria-hidden="true"></i><span>Log In</span>';
+        }, 1200);
+      });
+
+      // Clear error when user starts typing
+      [emailInput, passwordInput].forEach(input => {
+        input.addEventListener('input', function() {
+          if (formMessage.textContent) {
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
