@@ -354,57 +354,45 @@ function initPipelineChart() {
 // EVENT HANDLERS
 // ============================================
 
-function navigateToDepartment(deptId) {
-    const dept = departments.find(d => d.id === deptId);
-    alert(`Navigating to ${dept.name} department page...`);
-    // Backend integration: window.location.href = `/departments/${deptId}`;
+/* ================================
+   SIDEBAR TOGGLE & PERSISTENCE
+   ================================ */
+const menuToggle = document.getElementById('menuToggle');
+const sidebarEl = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+if (menuToggle && sidebarEl) {
+    menuToggle.addEventListener('click', () => {
+        if (window.innerWidth < 992) {
+            // Mobile: Toggle slide-in and overlay
+            sidebarEl.classList.toggle('show');
+            if (sidebarOverlay) sidebarOverlay.classList.toggle('show');
+        } else {
+            // Desktop: Toggle collapsed state
+            const isCollapsed = document.documentElement.classList.toggle('sidebar-collapsed');
+            
+            // Toggle the local class on the sidebar element
+            sidebarEl.classList.toggle('collapsed', isCollapsed);
+            
+            // Save the state
+            localStorage.setItem('sidebar-state', isCollapsed ? 'collapsed' : 'expanded');
+        }
+    });
+
+    // Sync the sidebar element class on initial load for JS consistency
+    if (document.documentElement.classList.contains('sidebar-collapsed')) {
+        sidebarEl.classList.add('collapsed');
+    }
 }
 
-// Mobile menu toggle
-document.getElementById('menuToggle').addEventListener('click', function () {
-    document.getElementById('sidebar').classList.toggle('show');
-    document.getElementById('sidebarOverlay').classList.toggle('show');
-});
-
-// Sidebar overlay click
-document.getElementById('sidebarOverlay').addEventListener('click', function () {
-    document.getElementById('sidebar').classList.remove('show');
-    document.getElementById('sidebarOverlay').classList.remove('show');
-});
-
-// Filter toggle
-document.getElementById('filterToggle').addEventListener('click', function () {
-    const content = document.getElementById('filterContent');
-    const icon = this.querySelector('i');
-    content.classList.toggle('show');
-    icon.classList.toggle('bi-chevron-down');
-    icon.classList.toggle('bi-chevron-up');
-});
-
-// Filter chips
-document.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', function () {
-        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-        this.classList.add('active');
+// Overlay click to close on mobile
+if (sidebarOverlay && sidebarEl) {
+    sidebarOverlay.addEventListener('click', () => {
+        sidebarEl.classList.remove('show');
+        sidebarOverlay.classList.remove('show');
     });
-});
+}
 
-// Button handlers
-// document.getElementById('postJobBtn').addEventListener('click', function () {
-//     alert('Opening job posting form...');
-// });
-
-document.getElementById('notificationBtn').addEventListener('click', function () {
-    alert('Opening notifications...');
-});
-
-// document.getElementById('profileDropdown').addEventListener('click', function () {
-//     alert('Opening profile menu...');
-// });
-
-document.getElementById('searchMobileToggle').addEventListener('click', function () {
-    alert('Opening mobile search...');
-});
 
 // ============================================
 // INITIALIZATION
