@@ -171,7 +171,7 @@ body {
 .logoimage {
     width: auto;
     max-width: 200px;
-    height: auto;
+    height:60px;
     object-fit: contain;
     object-position: center;
     filter: brightness(1.4) contrast(1.2);
