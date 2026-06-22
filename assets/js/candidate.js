@@ -1109,8 +1109,8 @@ window.deleteCandidate = deleteCandidate;
 
 const openMasterFilter = document.getElementById("openMasterFilter");
 const closeMasterFilter = document.getElementById("closeMasterFilter");
-const masterFilterDrawer = document.getElementById("masterFilterDrawer");
-const masterFilterOverlay = document.getElementById("masterFilterOverlay");
+// const masterFilterDrawer = document.getElementById("masterFilterDrawer");
+// const masterFilterOverlay = document.getElementById("masterFilterOverlay");
 const applyMasterFilters = document.getElementById("applyMasterFilters");
 const resetMasterFilters = document.getElementById("resetMasterFilters");
 const addFilterRule = document.getElementById("addFilterRule");
@@ -1127,9 +1127,9 @@ function closeMasterFilterDrawer() {
   if (masterFilterOverlay) masterFilterOverlay.classList.remove("show");
 }
 
-if (openMasterFilter) openMasterFilter.addEventListener("click", openMasterFilterDrawer);
-if (closeMasterFilter) closeMasterFilter.addEventListener("click", closeMasterFilterDrawer);
-if (masterFilterOverlay) masterFilterOverlay.addEventListener("click", closeMasterFilterDrawer);
+// if (openMasterFilter) openMasterFilter.addEventListener("click", openMasterFilterDrawer);
+// if (closeMasterFilter) closeMasterFilter.addEventListener("click", closeMasterFilterDrawer);
+// if (masterFilterOverlay) masterFilterOverlay.addEventListener("click", closeMasterFilterDrawer);
 
 if (addFilterRule) {
   addFilterRule.addEventListener("click", function () {

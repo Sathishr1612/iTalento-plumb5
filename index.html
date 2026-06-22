@@ -13,10 +13,11 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/stats-cards.css">
 
-    
+
     <script>
-        (function() {
+        (function () {
             if (localStorage.getItem("sidebar-state") === "collapsed") {
                 document.documentElement.classList.add("sidebar-collapsed");
             }
@@ -30,13 +31,13 @@
 
     <!-- Left Sidebar -->
     <aside class="sidebar" id="sidebar">
-         <div b-dmtnsl4jol class="logo-area">
-                <a b-dmtnsl4jol href="/" class="logo">
-                    <div b-dmtnsl4jol class="logo-text">
-                        <img b-dmtnsl4jol class="logoimage" src="assets/logo/iTalentO.png" alt="iTalentO Logo" />
-                    </div>
-                </a>
-            </div>
+        <div class="logo-area">
+            <a href="#" class="logo">
+                <div class="logo-text">
+                    <img class="logoimage" src="assets/logo/italentonewlogo.png" alt="iTALENTO Logo" />
+                </div>
+            </a>
+        </div>
 
         <nav class="nav-section">
             <div class="nav-item">
@@ -61,7 +62,7 @@
                 </a>
             </div>
 
-             <div class="nav-item">
+            <div class="nav-item">
                 <a href="users.html" class="nav-link">
                     <i class="bi bi-person"></i>
                     <span>User</span>
@@ -69,7 +70,7 @@
                 </a>
             </div>
 
-             <div class="nav-item">
+            <div class="nav-item">
                 <a href="settings.html" class="nav-link">
                     <i class="bi bi-gear"></i>
                     <span>Settings</span>
@@ -236,7 +237,7 @@
         <!-- Dashboard Content -->
         <main class="dashboard-content">
             <!-- Welcome Header -->
-              <div class="welcome-header">
+            <div class="welcome-header">
                 <div class="welcome-header-left">
                     <h1 class="welcome-title">Dashboard Overview</h1>
                     <p class="welcome-subtitle">Welcome back!</p>
@@ -244,7 +245,12 @@
                 <div class="welcome-header-actions">
                     <button class="upload-action-btn excel-btn" id="openExcelUpload" onclick="openExcelModal()">
                         <div class="upload-btn-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="17 8 12 3 7 8" />
+                                <line x1="12" y1="3" x2="12" y2="15" />
+                            </svg>
                         </div>
                         <div class="upload-btn-text">
                             <span class="upload-btn-label">Excel Upload</span>
@@ -254,7 +260,12 @@
                     </button>
                     <button class="upload-action-btn pdf-btn" id="openPdfUpload" onclick="openPdfModal()">
                         <div class="upload-btn-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="17 8 12 3 7 8" />
+                                <line x1="12" y1="3" x2="12" y2="15" />
+                            </svg>
                         </div>
                         <div class="upload-btn-text">
                             <span class="upload-btn-label">PDF Upload</span>
@@ -266,56 +277,160 @@
             </div>
 
 
-            <!-- Stats Row -->
-            <div class="stats-row">
-                <div class="stat-card clickable-stat" data-filter="all">
-                    <div class="stat-header">
-                        <div class="stat-icon blue">
-                            <i class="bi bi-people"></i>
+            <!-- Stats Section -->
+            <div class="stats-section-wrapper">
+                <!-- Top 8 Cards (Visible by default) -->
+                <div class="stats-grid primary-stats">
+                    <div class="stat-card clickable-stat" data-filter="all">
+                        <div class="stat-header">
+                            <div class="stat-icon blue">
+                                <i class="bi bi-people"></i>
+                            </div>
                         </div>
+                        <div class="stat-value" id="statTotalCandidates">156</div>
+                        <div class="stat-label">Total Candidates</div>
                     </div>
-                    <div class="stat-value" id="statTotalCandidates">156</div>
-                    <div class="stat-label">Total Candidates</div>
+
+                    <div class="stat-card clickable-stat" data-filter="new">
+                        <div class="stat-header">
+                            <div class="stat-icon teal">
+                                <i class="bi bi-person-plus"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statNewCandidates">24</div>
+                        <div class="stat-label">New</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat" data-filter="shortlist">
+                        <div class="stat-header">
+                            <div class="stat-icon purple">
+                                <i class="bi bi-bookmark-star"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statShortlistedCandidates">42</div>
+                        <div class="stat-label">Shortlisted</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat" data-filter="interview">
+                        <div class="stat-header">
+                            <div class="stat-icon orange">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statInterviewCandidates">18</div>
+                        <div class="stat-label">Interview</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat" data-filter="hired">
+                        <div class="stat-header">
+                            <div class="stat-icon green">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statHiredCandidates">12</div>
+                        <div class="stat-label">Hired</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat" data-filter="rejected">
+                        <div class="stat-header">
+                            <div class="stat-icon"
+                                style="background: rgba(239, 68, 68, 0.1); color: var(--danger, #ef4444);">
+                                <i class="bi bi-x-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statRejectedCandidates">8</div>
+                        <div class="stat-label">Rejected</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat" data-filter="offer">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;">
+                                <i class="bi bi-envelope-paper"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statOfferSent">5</div>
+                        <div class="stat-label">Offer Sent</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat" data-filter="pending">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: rgba(234, 179, 8, 0.1); color: #eab308;">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statPendingReview">14</div>
+                        <div class="stat-label">Pending Review</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: rgba(6, 182, 212, 0.1); color: #06b6d4;">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">32</div>
+                        <div class="stat-label">Phone Screen</div>
+                    </div>
+
+                    <div class="stat-card clickable-stat">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: rgba(236, 72, 153, 0.1); color: #ec4899;">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Tech Assignment</div>
+                    </div>
                 </div>
 
-                <div class="stat-card clickable-stat" data-filter="new">
-                    <div class="stat-header">
-                        <div class="stat-icon teal">
-                            <i class="bi bi-person-plus"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="statNewCandidates">24</div>
-                    <div class="stat-label">New</div>
+                <!-- View More Button -->
+                <div class="view-more-container">
+                    <button id="viewMoreMetricsBtn" class="btn-view-more">
+                        <span>View More Metrics</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
                 </div>
 
-                <div class="stat-card clickable-stat" data-filter="shortlist">
-                    <div class="stat-header">
-                        <div class="stat-icon purple">
-                            <i class="bi bi-bookmark-star"></i>
+                <!-- Expandable Section -->
+                <div class="expanded-stats-wrapper" id="expandedStatsWrapper">
+                    <div class="expanded-stats-inner stats-grid">
+                        <div class="stat-card clickable-stat">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(6, 182, 212, 0.1); color: #06b6d4;">
+                                    <i class="bi bi-telephone"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">32</div>
+                            <div class="stat-label">Phone Screen</div>
+                        </div>
+                        <div class="stat-card clickable-stat">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(236, 72, 153, 0.1); color: #ec4899;">
+                                    <i class="bi bi-laptop"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Tech Assignment</div>
+                        </div>
+                        <div class="stat-card clickable-stat">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(132, 204, 22, 0.1); color: #84cc16;">
+                                    <i class="bi bi-person-check"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">9</div>
+                            <div class="stat-label">Culture Fit</div>
+                        </div>
+                        <div class="stat-card clickable-stat">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(107, 114, 128, 0.1); color: #6b7280;">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Withdrawn</div>
                         </div>
                     </div>
-                    <div class="stat-value" id="statShortlistedCandidates">42</div>
-                    <div class="stat-label">Shortlisted</div>
-                </div>
-
-                <div class="stat-card clickable-stat" data-filter="interview">
-                    <div class="stat-header">
-                        <div class="stat-icon orange">
-                            <i class="bi bi-calendar-event"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="statInterviewCandidates">18</div>
-                    <div class="stat-label">Interview</div>
-                </div>
-
-                <div class="stat-card clickable-stat" data-filter="hired">
-                    <div class="stat-header">
-                        <div class="stat-icon green">
-                            <i class="bi bi-check-circle"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="statHiredCandidates">12</div>
-                    <div class="stat-label">Hired</div>
                 </div>
             </div>
 
@@ -763,6 +878,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/stats-cards.js"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/bulk-upload.js"></script>

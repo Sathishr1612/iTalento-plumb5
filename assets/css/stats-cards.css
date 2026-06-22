@@ -1,0 +1,174 @@
+.stats-section-wrapper {
+    margin-bottom: 28px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+/* Large Tablet: 3 cards per row */
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet: 2 cards per row */
+@media (max-width: 992px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================================
+   PREMIUM CARD DESIGN (Based on Reference)
+   ======================================================== */
+
+.stats-grid .stat-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    /* Very soft, premium shadow and light border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Left-align everything like the reference */
+    height: 100%;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.stats-grid .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    border-color: rgba(203, 213, 225, 0.8);
+}
+
+/* Flex order to place Label ABOVE Value without changing HTML */
+.stats-grid .stat-card .stat-header {
+    order: 1;
+    margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    /* Icon on the left */
+}
+
+/* Smaller, more elegant icon size */
+.stats-grid .stat-card .stat-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.stats-grid .stat-card:hover .stat-icon {
+    transform: scale(1.1);
+}
+
+/* Label styling (placed above value) */
+.stats-grid .stat-card .stat-label {
+    order: 2;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted, #64748b);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* Value styling (placed at bottom) */
+.stats-grid .stat-card .stat-value {
+    order: 3;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark-secondary, #0f172a);
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+/* 
+   ========================================================
+   View More Button Styles 
+   ========================================================
+*/
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.btn-view-more {
+    background: transparent;
+    border: 1px solid var(--border-light, #e5e7eb);
+    color: var(--text-muted, #6b7280);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.btn-view-more:hover {
+    background: var(--white, #ffffff);
+    color: var(--primary-teal, #2d8a86);
+    border-color: var(--primary-teal, #2d8a86);
+    box-shadow: 0 4px 12px rgba(45, 138, 134, 0.1);
+}
+
+.btn-view-more i {
+    transition: transform 0.3s ease;
+}
+
+.btn-view-more.expanded i {
+    transform: rotate(180deg);
+}
+
+/* 
+   ========================================================
+   Expandable Section with Smooth Vertical Animation
+   ========================================================
+*/
+.expanded-stats-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.expanded-stats-wrapper.expanded {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+/* The inner container needs overflow hidden for the CSS grid animation to work */
+.expanded-stats-inner {
+    overflow: hidden;
+}
+
+/* Adding a bit of top margin to separate the expanded cards from the button */
+.expanded-stats-wrapper.expanded .expanded-stats-inner {
+    padding-top: 4px;
+}
